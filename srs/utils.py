@@ -10,14 +10,13 @@ def read_json(file_path: Optional[str] = None) -> Tuple[List[Category], List[Pro
     """Функция записи class из json файла"""
     if file_path is None:
         current_dir = Path(__file__).parent
-        file_path = str(current_dir / "data" / "products.json")
+        file_path = str(current_dir / ".." / "data" / "products.json")
 
     json_path = Path(file_path)
 
     if not json_path.exists():
         print(f"Файл не найден: {json_path}")
         return [], []
-
 
     try:
         with open(json_path, "r", encoding="utf-8") as f:

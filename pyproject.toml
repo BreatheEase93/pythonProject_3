@@ -46,7 +46,7 @@ ignore_missing_imports = true
 
 [tool.black]
 line-length = 119
-exclude = [".git","venv", ".venv"]
+exclude = ".git/|venv/|.venv/"
 target-version = ['py38', 'py39', 'py310']
 skip-string-normalization = true
 
