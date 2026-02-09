@@ -63,7 +63,7 @@ wheels/
 # PyTest
 .pytest_cache/
 .coverage
-htmlcov/
+#htmlcov/
 
 # mypy
 .mypy_cache/
@@ -111,3 +111,4 @@ test_output/
 # Временные файлы IDE
 *.swp
 *~
+/.venv/
