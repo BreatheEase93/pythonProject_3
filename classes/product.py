@@ -1,5 +1,5 @@
 
-from typing import List, Dict
+from typing import Dict, Union
 
 
 class Product:
@@ -20,36 +20,36 @@ class Product:
         Product.products_dict[name] = self
 
     @classmethod
-    def new_product(cls, my_list: List) -> 'Product':
+    def new_product(cls, product_data: Dict[str, Union[str, float, int]]) -> 'Product':
         """Класс-метод, который принимает на вход параметры товара в словаре
         и возвращает созданный объект класса Product"""
-        if cls.products_dict.get(my_list[0]["name"]):
-            if my_list[0]["price"] >= cls.products_dict[my_list[0]["name"]].price:
+        if cls.products_dict.get(product_data["name"]):
+            if product_data["price"] >= cls.products_dict[product_data["name"]].price:
                 return cls(
-                    my_list[0]["name"],
-                    my_list[0]["description"],
-                    my_list[0]["price"],
-                    my_list[0]["quantity"] + cls.products_dict[my_list[0]["name"]].quantity)
+                    product_data["name"],
+                    product_data["description"],
+                    product_data["price"],
+                    product_data["quantity"] + cls.products_dict[product_data["name"]].quantity)
             else:
                 return cls(
-                    my_list[0]["name"],
-                    my_list[0]["description"],
-                    cls.products_dict[my_list[0]["name"]].price,
-                    my_list[0]["quantity"] + cls.products_dict[my_list[0]["name"]].quantity)
+                    product_data["name"],
+                    product_data["description"],
+                    cls.products_dict[product_data["name"]].price,
+                    product_data["quantity"] + cls.products_dict[product_data["name"]].quantity)
         return cls(
-            my_list[0]["name"],
-            my_list[0]["description"],
-            my_list[0]["price"],
-            my_list[0]["quantity"]
+            product_data["name"],
+            product_data["description"],
+            product_data["price"],
+            product_data["quantity"]
         )
 
     @property
-    def setting_price(self)-> float:
+    def price(self)-> float:
         """Геттер для цены"""
         return self.__price
 
-    @setting_price.setter
-    def setting_price(self, new_price: float):
+    @price.setter
+    def price(self, new_price: float):
         """Сеттер для цены с проверками"""
         if new_price <= 0:
             print("Цена не должна быть нулевая или отрицательная")
