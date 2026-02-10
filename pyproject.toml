@@ -12,7 +12,10 @@ dependencies = [
     "pandas (>=3.0.0,<4.0.0)",
     "yfinance (>=1.1.0,<2.0.0)",
     "python-dotenv (>=1.2.1,<2.0.0)",
-    "requests (>=2.32.5,<3.0.0)"
+    "requests (>=2.32.5,<3.0.0)",
+    "product (>=0.1.1.1,<0.2.0.0)",
+    "pytest (>=9.0.2,<10.0.0)",
+    "pytest-cov (>=7.0.0,<8.0.0)"
 ]
 
 [tool.poetry]
@@ -43,7 +46,7 @@ ignore_missing_imports = true
 
 [tool.black]
 line-length = 119
-exclude = '.git'
+exclude = ".git/|venv/|.venv/"
 target-version = ['py38', 'py39', 'py310']
 skip-string-normalization = true
 
