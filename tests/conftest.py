@@ -65,3 +65,19 @@ def mock_input():
     def _mock_input(input_values):
         return patch('builtins.input', side_effect=input_values)
     return _mock_input
+
+@pytest.fixture()
+def product_samsung_ne():
+    """Фикстура Product"""
+    return Product(**{"name": "Samsung Galaxy S23 Ultra",
+                     "description": "256GB, Серый цвет, 200MP камера",
+                     "price": 180000.0,
+                     "quantity": 5})
+
+@pytest.fixture()
+def product_samsung_price_u():
+    """Фикстура Product цена повышена"""
+    return Product(**{"name": "Samsung Galaxy S23 Ultra",
+                     "description": "256GB, Серый цвет, 200MP камера",
+                     "price": 200000.0,
+                     "quantity": 3})

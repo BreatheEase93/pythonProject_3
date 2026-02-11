@@ -1,7 +1,7 @@
 from classes.category import Category
 
 
-def test_init_product(category_smartphones):
+def test_init_category(category_smartphones):
     """Тест для инициирования в класс Category"""
     assert category_smartphones.name == "Смартфоны"
     assert category_smartphones.description == (
@@ -21,4 +21,5 @@ def test_init_product(category_smartphones):
 
     empty_category = Category("Тест", "Описание", [])
     assert empty_category.products == "В категории нет товаров"
-
+    assert str(category_smartphones) == f"Смартфоны, количество продуктов: 27 шт."
+    assert len(category_smartphones.get_products_list()) == 3

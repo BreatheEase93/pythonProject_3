@@ -46,6 +46,14 @@ def test_price_setter_increase(mock_input):
         product.price = 70000
         assert product.price == 80000
 
+def test_price_str(product_samsung_ne, product_samsung_price_u):
+    """Тест __str__ и __add__"""
+    assert str(product_samsung_ne) == "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт."
+    assert str(product_samsung_price_u) == "Samsung Galaxy S23 Ultra, 200000.0 руб. Остаток: 3 шт."
+    expected_sum = (product_samsung_ne.quantity * product_samsung_ne.price +
+                    product_samsung_price_u.quantity * product_samsung_price_u.price)
+    assert (product_samsung_ne + product_samsung_price_u) == expected_sum
+
 
 
 

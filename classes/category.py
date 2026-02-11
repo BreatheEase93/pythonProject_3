@@ -49,3 +49,7 @@ class Category:
 
         return f"{self.name}, количество продуктов: {new_quantity} шт."
 
+    def get_products_list(self) -> list:
+        """Возвращает список товаров (список объектов Product)"""
+        return self.__products[:]
+

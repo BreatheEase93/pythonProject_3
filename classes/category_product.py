@@ -8,7 +8,7 @@ class CategoryProductIterator:
         """Инициализирует итератор."""
         if not isinstance(category, Category):
             raise TypeError('Аргумент должен быть объектом класса Category.')
-        self.products = list(category.products)
+        self.products = list(category.get_products_list())
         self.index = 0
 
     def __iter__(self):
