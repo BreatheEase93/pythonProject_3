@@ -5,8 +5,7 @@ def test_init_category(category_smartphones):
     """Тест для инициирования в класс Category"""
     assert category_smartphones.name == "Смартфоны"
     assert category_smartphones.description == (
-        "Смартфоны, как средство не только коммуникации,"
-        " но и получение дополнительных функций для удобства жизни"
+        "Смартфоны, как средство не только коммуникации," " но и получение дополнительных функций для удобства жизни"
     )
 
     expected_output = (
@@ -21,5 +20,5 @@ def test_init_category(category_smartphones):
 
     empty_category = Category("Тест", "Описание", [])
     assert empty_category.products == "В категории нет товаров"
-    assert str(category_smartphones) == f"Смартфоны, количество продуктов: 27 шт."
+    assert str(category_smartphones) == "Смартфоны, количество продуктов: 27 шт."
     assert len(category_smartphones.get_products_list()) == 3

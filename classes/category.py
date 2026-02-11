@@ -1,5 +1,3 @@
-
-
 from classes.product import Product
 
 
@@ -21,7 +19,7 @@ class Category:
         Category.category_count += 1
         Category.product_count += len(self.__products)
 
-    def add_product(self, product: 'Product'):
+    def add_product(self, product: 'Product') -> None:
         """Добавляет товар в категорию"""
         if isinstance(product, Product):
             self.__products.append(product)
@@ -30,7 +28,7 @@ class Category:
             raise TypeError("Можно добавлять только объекты класса Product")
 
     @property
-    def products(self)-> str:
+    def products(self) -> str:
         """Геттер для получения списка товаров в виде строк"""
         if not self.__products:
             return "В категории нет товаров"
@@ -41,8 +39,8 @@ class Category:
 
         return "\n".join(result)
 
-
     def __str__(self):
+        """"""
         new_quantity = 0
         for product in self.__products:
             new_quantity += product.quantity
@@ -52,4 +50,3 @@ class Category:
     def get_products_list(self) -> list:
         """Возвращает список товаров (список объектов Product)"""
         return self.__products[:]
-

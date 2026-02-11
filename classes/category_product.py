@@ -1,4 +1,5 @@
 from classes.category import Category
+from classes.product import Product
 
 
 class CategoryProductIterator:
@@ -11,11 +12,11 @@ class CategoryProductIterator:
         self.products = list(category.get_products_list())
         self.index = 0
 
-    def __iter__(self):
+    def __iter__(self) -> "CategoryProductIterator":
         """Возвращает итератора."""
         return self
 
-    def __next__(self):
+    def __next__(self) -> "Product":
         """Получает следующий продукт из списка."""
         if self.index < len(self.products):
             current_product = self.products[self.index]

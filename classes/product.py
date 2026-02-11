@@ -1,9 +1,9 @@
-
 from typing import Dict, Union
 
 
 class Product:
     """Класс для представления товаров"""
+
     products_dict: Dict[str, 'Product'] = {}
 
     name: str
@@ -29,22 +29,19 @@ class Product:
                     product_data["name"],
                     product_data["description"],
                     product_data["price"],
-                    product_data["quantity"] + cls.products_dict[product_data["name"]].quantity)
+                    product_data["quantity"] + cls.products_dict[product_data["name"]].quantity,
+                )
             else:
                 return cls(
                     product_data["name"],
                     product_data["description"],
                     cls.products_dict[product_data["name"]].price,
-                    product_data["quantity"] + cls.products_dict[product_data["name"]].quantity)
-        return cls(
-            product_data["name"],
-            product_data["description"],
-            product_data["price"],
-            product_data["quantity"]
-        )
+                    product_data["quantity"] + cls.products_dict[product_data["name"]].quantity,
+                )
+        return cls(product_data["name"], product_data["description"], product_data["price"], product_data["quantity"])
 
     @property
-    def price(self)-> float:
+    def price(self) -> float:
         """Геттер для цены"""
         return self.__price
 
@@ -56,31 +53,23 @@ class Product:
             return
         else:
             if self.__price >= new_price:
-                answer: str = input("Цена понижается, если уверены нажмите y(yes), а любой другой ответ отменяет действие")
+                answer: str = input(
+                    "Цена понижается, если уверены нажмите y(yes), а любой другой ответ отменяет действие"
+                )
                 if answer == "y" or answer == "yes":
                     self.__price = new_price
                     print(f"Цена изменена, новая цена: {self.__price}.")
                 else:
-                    print(f"Изменения отменены")
+                    print("Изменения отменены")
             else:
                 self.__price = new_price
                 print(f"Цена изменена, новая цена: {self.__price}.")
 
-    def __str__(self):
+    def __str__(self) -> str:
         """Выводит в принт строку 'Название продукта, 80 руб. Остаток: 15 шт.'"""
-        return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
+        return f"{self.name}, {self.price:.1f} руб. Остаток: {self.quantity} шт."
 
-    def __add__(self, other):
-        """Складывает продукты, в итоге у вас получалась полная стоимость всех товаров на складе."""
+    def __add__(self, other: "Product") -> float:
+        """Складывает продукты, в итоге получается общая стоимость всех товаров на складе."""
         result = (self.quantity * self.price) + (other.quantity * other.price)
         return result
-
-
-
-
-
-
-
-
-
-

@@ -39,45 +39,76 @@ def category_smartphones():
 
     return Category(
         name="Смартфоны",
-        description="Смартфоны, как средство не только коммуникации, но и получение дополнительных функций для удобства жизни",
-        products=products
+        description="Смартфоны, как средство не только коммуникации,"
+        " но и получение дополнительных функций для удобства жизни",
+        products=products,
     )
+
 
 @pytest.fixture()
 def product_samsung_new():
     """Фикстура Product"""
-    return {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 180000.0,
-             "quantity": 5}
+    return {
+        "name": "Samsung Galaxy S23 Ultra",
+        "description": "256GB, Серый цвет, 200MP камера",
+        "price": 180000.0,
+        "quantity": 5,
+    }
+
 
 @pytest.fixture()
 def product_samsung_price_up():
     """Фикстура Product цена повышена"""
-    return {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 200000.0,
-             "quantity": 3}
+    return {
+        "name": "Samsung Galaxy S23 Ultra",
+        "description": "256GB, Серый цвет, 200MP камера",
+        "price": 200000.0,
+        "quantity": 3,
+    }
+
+
 @pytest.fixture()
 def product_samsung_price_dp():
     """Фикстура Product цена снижена"""
-    return {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 150000.0,
-             "quantity": 4}
+    return {
+        "name": "Samsung Galaxy S23 Ultra",
+        "description": "256GB, Серый цвет, 200MP камера",
+        "price": 150000.0,
+        "quantity": 4,
+    }
+
+
 @pytest.fixture
 def mock_input():
     """Фикстура для мока функции input()"""
+
     def _mock_input(input_values):
         return patch('builtins.input', side_effect=input_values)
+
     return _mock_input
+
 
 @pytest.fixture()
 def product_samsung_ne():
     """Фикстура Product"""
-    return Product(**{"name": "Samsung Galaxy S23 Ultra",
-                     "description": "256GB, Серый цвет, 200MP камера",
-                     "price": 180000.0,
-                     "quantity": 5})
+    return Product(
+        **{
+            "name": "Samsung Galaxy S23 Ultra",
+            "description": "256GB, Серый цвет, 200MP камера",
+            "price": 180000.0,
+            "quantity": 5,
+        }
+    )
+
 
 @pytest.fixture()
 def product_samsung_price_u():
     """Фикстура Product цена повышена"""
-    return Product(**{"name": "Samsung Galaxy S23 Ultra",
-                     "description": "256GB, Серый цвет, 200MP камера",
-                     "price": 200000.0,
-                     "quantity": 3})
+    return Product(
+        **{
+            "name": "Samsung Galaxy S23 Ultra",
+            "description": "256GB, Серый цвет, 200MP камера",
+            "price": 200000.0,
+            "quantity": 3,
+        }
+    )
