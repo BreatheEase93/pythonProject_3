@@ -37,16 +37,15 @@ class Category:
 
         result = []
         for product in self.__products:
-            result.append(f"{str(Product)}")
+            result.append(str(product))
 
         return "\n".join(result)
 
 
     def __str__(self):
         new_quantity = 0
-        for i in self.products:
-            new_quantity += Product.quantity
+        for product in self.__products:
+            new_quantity += product.quantity
 
-        return f"Название категории, количество продуктов: 200 шт."
+        return f"{self.name}, количество продуктов: {new_quantity} шт."
 
-print()
