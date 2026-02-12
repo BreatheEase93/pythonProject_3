@@ -3,7 +3,9 @@ from unittest.mock import patch
 import pytest
 
 from classes.category import Category
+from classes.lawngrass import LawnGrass
 from classes.product import Product
+from classes.smartphone import Smartphone
 
 
 @pytest.fixture()
@@ -112,3 +114,43 @@ def product_samsung_price_u():
             "quantity": 3,
         }
     )
+
+@pytest.fixture()
+def smartphone_product_1():
+    """Фикстура Smartphone(Product)"""
+    smartphone = Smartphone("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера",
+                            180000.0, 5, 95.5,
+                             "S23 Ultra", 256, "Серый")
+    return smartphone
+
+@pytest.fixture()
+def smartphone_product_2():
+    """Фикстура Smartphone(Product)"""
+    smartphone2 = Smartphone("Iphone 15", "512GB, Gray space",
+                            210000.0, 8, 98.2,
+                            "15", 512, "Gray space")
+    return smartphone2
+
+@pytest.fixture()
+def smartphone_product_3():
+    """Фикстура Smartphone(Product)"""
+    smartphone3 = Smartphone("Xiaomi Redmi Note 11", "1024GB, Синий",
+                             31000.0, 14, 90.3, "Note 11",
+                             1024, "Синий")
+    return smartphone3
+
+@pytest.fixture()
+def lawn_grass_product_1():
+    """Фикстура LawnGrass(Product)"""
+    grass1 = LawnGrass("Газонная трава", "Элитная трава для газона", 500.0, 20, "Россия", "7 дней", "Зеленый")
+
+    return grass1
+@pytest.fixture()
+
+def lawn_grass_product_2():
+    """Фикстура LawnGrass(Product)"""
+    grass2 = LawnGrass("Газонная трава 2", "Выносливая трава", 450.0, 15, "США", "5 дней", "Темно-зеленый")
+
+    return grass2
+
+
