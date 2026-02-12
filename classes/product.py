@@ -27,26 +27,26 @@ class Product:
         if cls.products_dict.get(product_data["name"]):
             if product_data["price"] >= cls.products_dict[product_data["name"]].price:
                 new_product = cls(
-                product_data["name"],
-                product_data["description"],
-                product_data["price"],
-                product_data["quantity"] + cls.products_dict[product_data["name"]].quantity,
+                    product_data["name"],
+                    product_data["description"],
+                    product_data["price"],
+                    product_data["quantity"] + cls.products_dict[product_data["name"]].quantity,
                 )
             else:
-                 new_product = cls(
+                new_product = cls(
                     product_data["name"],
                     product_data["description"],
                     cls.products_dict[product_data["name"]].price,
                     product_data["quantity"] + cls.products_dict[product_data["name"]].quantity,
                 )
         else:
-            new_product = cls(product_data["name"], product_data["description"], product_data["price"], product_data["quantity"])
-
+            new_product = cls(
+                product_data["name"], product_data["description"], product_data["price"], product_data["quantity"]
+            )
 
         if isinstance(new_product, Product):
             return new_product
         raise TypeError("Не удалось создать продукт")
-
 
     @property
     def price(self) -> float:
@@ -79,7 +79,7 @@ class Product:
 
     def __add__(self, other: "Product") -> float:
         """Складывает продукты, в итоге получается общая стоимость всех товаров на складе."""
-        if type(self) != type(other):
+        if type(self) is not type(other):
             print("Возможно складывать товары только из одинаковых классов продуктов.")
             raise TypeError
         result = (self.quantity * self.price) + (other.quantity * other.price)
