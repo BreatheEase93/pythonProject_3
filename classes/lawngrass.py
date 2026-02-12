@@ -2,7 +2,7 @@ from classes.product import Product
 
 
 class LawnGrass(Product):
-    """Класс для Трава газонная"""
+    """Класс для 'Трава газонная', подкласс Product."""
 
     def __init__(self, name: str, description: str, price: float, quantity: int, country: str,
                  germination_period: str, color: str) -> None:

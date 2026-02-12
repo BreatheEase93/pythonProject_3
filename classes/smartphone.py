@@ -2,7 +2,7 @@ from classes.product import Product
 
 
 class Smartphone(Product):
-    """Класс для смартфононов"""
+    """Класс для 'смартфононов', подкласс Product."""
 
     def __init__(self, name: str,description: str, price: float, quantity: int,
                  efficiency: float, model: str, memory: int, color: str) -> None:
