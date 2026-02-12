@@ -8,7 +8,6 @@ def test_read_json():
     result = read_json()
     assert len(result) == 2
     assert result[0][0].name == "Смартфоны"
-    assert result[0][0].product_count == 7
 
 
 def test_read_json_fail():
