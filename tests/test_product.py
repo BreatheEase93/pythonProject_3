@@ -28,6 +28,8 @@ def test_new_product_class_method(product_samsung_new, product_samsung_price_up,
     assert product3.quantity == 12
 
 
+
+
 def test_price_setter_increase(mock_input):
     """Тест сеттера цены при повышении"""
     product = Product("Samsung Galaxy S23", "256GB, Серый цвет, 100MP камера", 100000.0, 5)
