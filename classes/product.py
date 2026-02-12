@@ -71,5 +71,8 @@ class Product:
 
     def __add__(self, other: "Product") -> float:
         """Складывает продукты, в итоге получается общая стоимость всех товаров на складе."""
+        if type(self) != type(other):
+            print("Возможно складывать товары только из одинаковых классов продуктов.")
+            raise TypeError
         result = (self.quantity * self.price) + (other.quantity * other.price)
         return result
