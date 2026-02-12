@@ -23,22 +23,30 @@ class Product:
     def new_product(cls, product_data: Dict[str, Union[str, float, int]]) -> 'Product':
         """Класс-метод, который принимает на вход параметры товара в словаре
         и возвращает созданный объект класса Product"""
+        new_product: "Product"
         if cls.products_dict.get(product_data["name"]):
             if product_data["price"] >= cls.products_dict[product_data["name"]].price:
-                return cls(
-                    product_data["name"],
-                    product_data["description"],
-                    product_data["price"],
-                    product_data["quantity"] + cls.products_dict[product_data["name"]].quantity,
+                new_product = cls(
+                product_data["name"],
+                product_data["description"],
+                product_data["price"],
+                product_data["quantity"] + cls.products_dict[product_data["name"]].quantity,
                 )
             else:
-                return cls(
+                 new_product = cls(
                     product_data["name"],
                     product_data["description"],
                     cls.products_dict[product_data["name"]].price,
                     product_data["quantity"] + cls.products_dict[product_data["name"]].quantity,
                 )
-        return cls(product_data["name"], product_data["description"], product_data["price"], product_data["quantity"])
+        else:
+            new_product = cls(product_data["name"], product_data["description"], product_data["price"], product_data["quantity"])
+
+
+        if isinstance(new_product, Product):
+            return new_product
+        raise TypeError("Не удалось создать продукт")
+
 
     @property
     def price(self) -> float:
