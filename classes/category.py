@@ -40,7 +40,7 @@ class Category:
         return "\n".join(result)
 
     def __str__(self):
-        """"""
+        """Вывод на str"""
         new_quantity = 0
         for product in self.__products:
             new_quantity += product.quantity
