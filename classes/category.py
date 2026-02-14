@@ -2,7 +2,7 @@ from classes.product import Product
 
 
 class Category:
-    """Класс для представления разработчиков"""
+    """Класс для категории продуктов"""
 
     category_count: int = 0
     product_count: int = 0
@@ -50,3 +50,10 @@ class Category:
     def get_products_list(self) -> list:
         """Возвращает список товаров (список объектов Product)"""
         return self.__products[:]
+
+    def __repr__(self) -> str:
+        """Представление категории для отладки"""
+        return (f"Category("
+                f"name='{self.name}', "
+                f"description='{self.description}', "
+                f"products_count={len(self.__products)})")

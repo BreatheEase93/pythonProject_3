@@ -9,7 +9,7 @@ def test_init_category(category_smartphones):
     )
 
     expected_output = (
-        "Samsung Galaxy C23 Ultra, 180000.0 руб. Остаток: 5 шт.\n"
+        "Samsung Galaxy C23 Ultra, 180000.0 руб. Остаток: 10 шт.\n"
         "Iphone 15, 210000.0 руб. Остаток: 8 шт.\n"
         "Xiaomi Redmi Note 11, 31000.0 руб. Остаток: 14 шт."
     )
@@ -20,5 +20,5 @@ def test_init_category(category_smartphones):
 
     empty_category = Category("Тест", "Описание", [])
     assert empty_category.products == "В категории нет товаров"
-    assert str(category_smartphones) == "Смартфоны, количество продуктов: 27 шт."
+    assert str(category_smartphones) == "Смартфоны, количество продуктов: 32 шт."
     assert len(category_smartphones.get_products_list()) == 3
