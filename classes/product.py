@@ -2,16 +2,18 @@
 from typing import Dict, Union
 
 from classes.base_product import BaseProduct
+from classes.mixins import ProductReprMixin
 
 
-class Product(BaseProduct):
+class Product(BaseProduct, ProductReprMixin):
     """Класс для представления товаров"""
 
     products_dict: Dict[str, 'Product'] = {}
 
     def __init__(self, name: str, description: str, price: float, quantity: int) -> None:
         """Инициализация объекта Product"""
-        super().__init__(name, description, price, quantity)
+        BaseProduct.__init__(self, name, description, price, quantity)
+        ProductReprMixin.__init__(self)
         Product.products_dict[name] = self
 
 
@@ -80,3 +82,11 @@ class Product(BaseProduct):
             raise TypeError
         result = (self.quantity * self.price) + (other.quantity * other.price)
         return result
+
+    def __repr__(self):
+        """Представление объекта для отладки"""
+        return (f"{self.__class__.__name__}("
+                f"'{self.name}', "
+                f"'{self.description}', "
+                f"{self.price}, "
+                f"{self.quantity})")
