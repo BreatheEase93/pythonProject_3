@@ -1,3 +1,5 @@
+from classes.base_product import BaseProduct
+from classes.mixins import ProductReprMixin
 from classes.product import Product
 
 
@@ -16,8 +18,22 @@ class Smartphone(Product):
         color: str,
     ) -> None:
         """Инициирование объекта class Smartphone"""
-        super().__init__(name, description, price, quantity)
+        BaseProduct.__init__(self, name, description, price, quantity)
         self.efficiency = efficiency
         self.model = model
         self.memory = memory
         self.color = color
+        ProductReprMixin.__init__(self)
+
+    def __repr__(self):
+        return (
+            f"Smartphone("
+            f"'{self.name}', "
+            f"'{self.description}', "
+            f"{self.price}, "
+            f"{self.quantity}, "
+            f"{self.efficiency}, "
+            f"'{self.model}', "
+            f"{self.memory}, "
+            f"'{self.color}')"
+        )

@@ -1,22 +1,18 @@
 from typing import Dict, Union
 
+from classes.base_product import BaseProduct
+from classes.mixins import ProductReprMixin
 
-class Product:
+
+class Product(BaseProduct, ProductReprMixin):
     """Класс для представления товаров"""
 
     products_dict: Dict[str, 'Product'] = {}
 
-    name: str
-    description: str
-    price: float
-    quantity: int
-
     def __init__(self, name: str, description: str, price: float, quantity: int) -> None:
-        """Инициирование объекта class Product"""
-        self.name = name
-        self.description = description
-        self.__price = price
-        self.quantity = quantity
+        """Инициализация объекта Product"""
+        BaseProduct.__init__(self, name, description, price, quantity)
+        ProductReprMixin.__init__(self)
         Product.products_dict[name] = self
 
     @classmethod
@@ -51,7 +47,7 @@ class Product:
     @property
     def price(self) -> float:
         """Геттер для цены"""
-        return self.__price
+        return self._price
 
     @price.setter
     def price(self, new_price: float):
@@ -60,18 +56,18 @@ class Product:
             print("Цена не должна быть нулевая или отрицательная")
             return
         else:
-            if self.__price >= new_price:
+            if self._price >= new_price:
                 answer: str = input(
                     "Цена понижается, если уверены нажмите y(yes), а любой другой ответ отменяет действие"
                 )
                 if answer == "y" or answer == "yes":
-                    self.__price = new_price
-                    print(f"Цена изменена, новая цена: {self.__price}.")
+                    self._price = new_price
+                    print(f"Цена изменена, новая цена: {self._price}.")
                 else:
                     print("Изменения отменены")
             else:
-                self.__price = new_price
-                print(f"Цена изменена, новая цена: {self.__price}.")
+                self._price = new_price
+                print(f"Цена изменена, новая цена: {self._price}.")
 
     def __str__(self) -> str:
         """Выводит в принт строку 'Название продукта, 80 руб. Остаток: 15 шт.'"""
@@ -84,3 +80,13 @@ class Product:
             raise TypeError
         result = (self.quantity * self.price) + (other.quantity * other.price)
         return result
+
+    def __repr__(self):
+        """Представление объекта для отладки"""
+        return (
+            f"{self.__class__.__name__}("
+            f"'{self.name}', "
+            f"'{self.description}', "
+            f"{self.price}, "
+            f"{self.quantity})"
+        )
