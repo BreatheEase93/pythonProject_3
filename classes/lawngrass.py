@@ -25,11 +25,13 @@ class LawnGrass(Product):
 
     def __repr__(self):
         """Представление объекта для отладки"""
-        return (f"{self.__class__.__name__}("
-                f"'{self.name}', "
-                f"'{self.description}', "
-                f"{self.price}, "
-                f"{self.quantity}, "
-                f"'{self.country}', "
-                f"'{self.germination_period}', "
-                f"'{self.color}')")
+        return (
+            f"{self.__class__.__name__}("
+            f"'{self.name}', "
+            f"'{self.description}', "
+            f"{self.price}, "
+            f"{self.quantity}, "
+            f"'{self.country}', "
+            f"'{self.germination_period}', "
+            f"'{self.color}')"
+        )

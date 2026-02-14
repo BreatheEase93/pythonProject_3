@@ -18,9 +18,6 @@ class Order:
         """Рассчитывает итоговую стоимость заказа."""
         return self.product.price * self.quantity
 
-
     def __repr__(self) -> str:
         """Представление заказа для отладки"""
-        return (f"Order("
-                f"product={repr(self.product)}, "
-                f"quantity={self.quantity})")
+        return f"Order(" f"product={repr(self.product)}, " f"quantity={self.quantity})"

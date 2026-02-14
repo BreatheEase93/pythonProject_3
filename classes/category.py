@@ -53,7 +53,9 @@ class Category:
 
     def __repr__(self) -> str:
         """Представление категории для отладки"""
-        return (f"Category("
-                f"name='{self.name}', "
-                f"description='{self.description}', "
-                f"products_count={len(self.__products)})")
+        return (
+            f"Category("
+            f"name='{self.name}', "
+            f"description='{self.description}', "
+            f"products_count={len(self.__products)})"
+        )

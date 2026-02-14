@@ -1,5 +1,3 @@
-import inspect
-
 
 class ProductReprMixin:
     """Миксин для печати информации о создании объекта"""

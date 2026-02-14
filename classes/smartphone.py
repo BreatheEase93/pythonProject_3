@@ -17,7 +17,6 @@ class Smartphone(Product):
         memory: int,
         color: str,
     ) -> None:
-
         """Инициирование объекта class Smartphone"""
         BaseProduct.__init__(self, name, description, price, quantity)
         self.efficiency = efficiency
@@ -27,12 +26,14 @@ class Smartphone(Product):
         ProductReprMixin.__init__(self)
 
     def __repr__(self):
-        return (f"Smartphone("
-                f"'{self.name}', "
-                f"'{self.description}', "
-                f"{self.price}, "
-                f"{self.quantity}, "
-                f"{self.efficiency}, "
-                f"'{self.model}', "
-                f"{self.memory}, "
-                f"'{self.color}')")
+        return (
+            f"Smartphone("
+            f"'{self.name}', "
+            f"'{self.description}', "
+            f"{self.price}, "
+            f"{self.quantity}, "
+            f"{self.efficiency}, "
+            f"'{self.model}', "
+            f"{self.memory}, "
+            f"'{self.color}')"
+        )

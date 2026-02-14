@@ -1,4 +1,3 @@
-
 from typing import Dict, Union
 
 from classes.base_product import BaseProduct
@@ -15,7 +14,6 @@ class Product(BaseProduct, ProductReprMixin):
         BaseProduct.__init__(self, name, description, price, quantity)
         ProductReprMixin.__init__(self)
         Product.products_dict[name] = self
-
 
     @classmethod
     def new_product(cls, product_data: Dict[str, Union[str, float, int]]) -> 'Product':
@@ -85,8 +83,10 @@ class Product(BaseProduct, ProductReprMixin):
 
     def __repr__(self):
         """Представление объекта для отладки"""
-        return (f"{self.__class__.__name__}("
-                f"'{self.name}', "
-                f"'{self.description}', "
-                f"{self.price}, "
-                f"{self.quantity})")
+        return (
+            f"{self.__class__.__name__}("
+            f"'{self.name}', "
+            f"'{self.description}', "
+            f"{self.price}, "
+            f"{self.quantity})"
+        )
