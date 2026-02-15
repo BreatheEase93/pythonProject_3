@@ -1,24 +1,47 @@
-from typing import Union
-
 from classes.basemodel import BaseModel
-from classes.lawngrass import LawnGrass
+from classes.error.p_roduct_1quantity_error import ProductQuantityError
 from classes.product import Product
-from classes.smartphone import Smartphone
 
 
 class Order(BaseModel):
     """Класс для представления заказа"""
 
-    def __init__(self, product: Union[Product, Smartphone, LawnGrass], quantity: int) -> None:
+    def __init__(self, products: list) -> None:
         """Инициализация заказа"""
-        self.product = product
-        self.quantity = quantity
+        self.products = []
+        self.total_price = 0.0
+
+        # Добавляем товары с проверкой количества
+        for product in products:
+            try:
+                self.add_product(product)
+                print(f"Товар '{product.name}' успешно добавлен в заказ")
+            except ProductQuantityError as e:
+                print(f"Ошибка: {e}")
+            finally:
+                print(f"Добавление товара '{product.name if hasattr(product, 'name')else 'неизвестный'}' завершена")
+
         self.total_price = self.calculate_total()
+
+    def add_product(self, product: Product) -> None:
+        """Добавляет товар в заказ с проверкой количества"""
+        if not isinstance(product, Product):
+            raise TypeError("Можно добавлять только объекты класса Product")
+
+        # Проверяем количество товара
+        if product.quantity <= 0:
+            raise ProductQuantityError(f"Нельзя добавить в заказ товар '{product.name}' с нулевым количеством")
+
+        self.products.append(product)
 
     def calculate_total(self) -> float:
         """Рассчитывает итоговую стоимость заказа."""
-        return self.product.price * self.quantity
+        total = 0.0
+        for product in self.products:
+            total += product.price * product.quantity
+        return total
 
     def __repr__(self) -> str:
         """Представление заказа для отладки"""
-        return f"Order(" f"product={repr(self.product)}, " f"quantity={self.quantity})"
+        products_info = ", ".join([f"{p.name} (x{p.quantity})" for p in self.products])
+        return f"Order(products=[{products_info}], total_price={self.total_price})"

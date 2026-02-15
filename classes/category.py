@@ -1,4 +1,5 @@
 from classes.basemodel import BaseModel
+from classes.error.p_roduct_1quantity_error import ProductQuantityError
 from classes.product import Product
 
 
@@ -16,17 +17,25 @@ class Category(BaseModel):
         """Инициирование объекта class Category"""
         self.name = name
         self.description = description
-        self.__products = products
+        self.__products = []
+
+        for product in products:
+            try:
+                self.add_product(product)
+                print(f"Товар '{product.name}' успешно добавлен в категорию")
+            except ProductQuantityError as e:
+                print(f"Ошибка: {e}")
+            finally:
+                print(f"Добавление товара '{product.name if hasattr(product, 'name') else 'неизвестный'}'завершена")
         Category.category_count += 1
         Category.product_count += len(self.__products)
 
     def add_product(self, product: 'Product') -> None:
         """Добавляет товар в категорию"""
-        if isinstance(product, Product):
-            self.__products.append(product)
-            Category.product_count += 1
-        else:
+        if not isinstance(product, Product):
             raise TypeError("Можно добавлять только объекты класса Product")
+        self.__products.append(product)
+        Category.product_count += 1
 
     @property
     def products(self) -> str:
@@ -73,7 +82,7 @@ class Category(BaseModel):
 
             for product in products:
                 quantity += product.quantity
-                result_add += (product.quantity * product.price)
+                result_add += product.quantity * product.price
 
             result = result_add / quantity
             return result

@@ -10,6 +10,7 @@ def test_product_initialization(product_samsung):
     assert product_samsung.price == 180000.0
     assert product_samsung.quantity == 5
 
+
 def test_product_initialization_value_error():
     """Тест инициализации продукта ValueError"""
     with pytest.raises(ValueError, match='Товар с нулевым количеством не может быть добавлен'):
