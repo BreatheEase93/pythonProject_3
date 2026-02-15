@@ -16,9 +16,12 @@ def test_init_category(category_smartphones):
     assert category_smartphones.products == expected_output
 
     assert Category.category_count == 1
-    assert Category.product_count == 3
+    assert Category.product_count == 6
 
     empty_category = Category("Тест", "Описание", [])
     assert empty_category.products == "В категории нет товаров"
     assert str(category_smartphones) == "Смартфоны, количество продуктов: 32 шт."
     assert len(category_smartphones.get_products_list()) == 3
+
+    category_empty = Category("Пустая категория", "Категория без продуктов", [])
+    assert category_empty.middle_price() == 0.0
