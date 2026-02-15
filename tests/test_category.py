@@ -1,3 +1,5 @@
+import pytest
+
 from classes.category import Category
 
 
@@ -22,3 +24,7 @@ def test_init_category(category_smartphones):
     assert empty_category.products == "В категории нет товаров"
     assert str(category_smartphones) == "Смартфоны, количество продуктов: 32 шт."
     assert len(category_smartphones.get_products_list()) == 3
+
+    category_empty = Category("Пустая категория", "Категория без продуктов", [])
+    assert category_empty.middle_price() == 0.0
+

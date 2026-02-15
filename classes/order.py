@@ -1,11 +1,12 @@
 from typing import Union
 
+from classes.basemodel import BaseModel
 from classes.lawngrass import LawnGrass
 from classes.product import Product
 from classes.smartphone import Smartphone
 
 
-class Order:
+class Order(BaseModel):
     """Класс для представления заказа"""
 
     def __init__(self, product: Union[Product, Smartphone, LawnGrass], quantity: int) -> None:

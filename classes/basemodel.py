@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 
 class BaseModel(ABC):
-    """Абстрактный базовый класс для всех моделей"""
+    """Абстрактный базовый класс для моделей Order и Category"""
 
     def __init__(self):
         """Базовый конструктор"""

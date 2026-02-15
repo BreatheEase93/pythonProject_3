@@ -1,7 +1,8 @@
+from classes.basemodel import BaseModel
 from classes.product import Product
 
 
-class Category:
+class Category(BaseModel):
     """Класс для категории продуктов"""
 
     category_count: int = 0
@@ -59,3 +60,22 @@ class Category:
             f"description='{self.description}', "
             f"products_count={len(self.__products)})"
         )
+
+    def middle_price(self) -> float:
+        """Геттер для получения средней цены"""
+        try:
+            quantity: int = 0
+            result_add: float = 0
+            products = self.get_products_list()
+
+            if not products:
+                return 0.0
+
+            for product in products:
+                quantity += product.quantity
+                result_add += (product.quantity * product.price)
+
+            result = result_add / quantity
+            return result
+        except ZeroDivisionError:
+            return 0.0
