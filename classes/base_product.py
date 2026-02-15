@@ -8,7 +8,9 @@ class BaseProduct(ABC):
         """Инициализация объекта BaseProduct"""
         self.name = name
         self.description = description
-        self._price = price  # Используем _price (одно подчеркивание) для доступа из наследников
+        self._price = price
+        if quantity <= 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
         self.quantity = quantity
 
     @property
